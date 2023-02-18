@@ -20,12 +20,12 @@ const signup=sequelize.define('signup',{
    },
    phonenumber:
    {
-    type:Sequelize.INTEGER,
+    type:Sequelize.STRING,
     allowNull:false,
     unique:true
    },
    password:{
-    type:Sequelize.INTEGER,
+    type:Sequelize.STRING,
     allowNull:false
    }
 });
