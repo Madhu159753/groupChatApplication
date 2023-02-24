@@ -4,10 +4,14 @@ async function chatData(event){
         message:event.target.message.value
     };
 
+
     const token=localStorage.getItem('token');
     try{
-   const result=await axios.post("http://localhost:3000/chat",data,{headers:{"Authorization":token}})
-      showmessageOnScreen(result.data.message)
+  
+      const result=await axios.post("http://localhost:3000/chat",data,{headers:{"Authorization":token}})
+        showmessageOnScreen(result.data.message)
+       window.location.reload()
+    
     }
     catch(err){
     console.log(err)
@@ -20,16 +24,22 @@ function showmessageOnScreen(user){
     parentNode.innerHTML=parentNode.innerHTML+childHTML;
 }
 
-window.addEventListener("DOMContentLoaded",async ()=>{
-    const token=localStorage.getItem('token')
-try{
-const result=await axios.get("http://localhost:3000/getchat",{headers:{"Authorization":token}})
-   //console.log(result)
-for(var i=0;i<result.data.allData.length;i++){
-    showmessageOnScreen(result.data.allData[i]);
-  }
+window.addEventListener("DOMContentLoaded",async()=>{
+        const token=localStorage.getItem('token')
+        const name=localStorage.getItem('username');
+        setInterval(async()=>{
+  try{
+    const result=await axios.get("http://localhost:3000/getchat",{headers:{"Authorization":token}})
+            console.log(name)
+            for(var i=0;i<result.data.allData.length;i++){
+    
+                showmessageOnScreen(result.data.allData[i]);
+            }  
+
 }
+
 catch(err){
 console.log(err)
 }
+})
 })
