@@ -19,18 +19,21 @@ exports.postDataForSignup=async(req,res,next)=>{
         return res.status(400).json({err:'bad parameter,something is missing'});
     }
     const user=await signup.findAll({where:{email,phonenumber}})
-    if(user){
+    if(user.length>0){
       return res.status(401).json({msg:'already signup'})
     }
+    else{
     const saltrounds=10;
     //const error=[];
     bcrypt.hash(password,saltrounds,async(err,hash)=>{
         const data= await signup.create({name,email,phonenumber,password:hash});
-        res.status(201).json({data:data,message:'successfully created new user'});
+        res.status(201).json({userdata:data,message:'successfully created new user'});
     })
-  }
+    }
+}
   catch(err){
     console.log(err)
     res.status(500).json({err:err})
   }
 };
+

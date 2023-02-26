@@ -11,10 +11,12 @@
   <main> 
     <h2 class="signup">Login Please</h2>
       <form class="product-form"  method="POST" onsubmit="login(event)">
+        
           <div class="form-control">
             <label for="email">Email</label>
             <input id="email" type="text" name="email" required/>
           </div>
+
         
           <div class="form-control">
             <label for="password">Password</label>
@@ -29,3 +31,6 @@
   <script src="login.js"></script>
 </body>
 </html>
+
+<form  action="/" method="POST" onsubmit="document.getElementById('username')
+.value=localStorage.getItem('username')"> 

@@ -8,8 +8,11 @@ async function chatData(event){
     const token=localStorage.getItem('token');
     try{
   
-      const result=await axios.post("http://localhost:3000/chat",data,{headers:{"Authorization":token}})
+      const result=await axios.post("http://localhost:3000/message/chat",data,{headers:{"Authorization":token}})
         showmessageOnScreen(result.data.message)
+        let msg=[];
+        msg=result;
+    
        window.location.reload()
     
     }
@@ -26,13 +29,11 @@ function showmessageOnScreen(user){
 
 window.addEventListener("DOMContentLoaded",async()=>{
         const token=localStorage.getItem('token')
-        const name=localStorage.getItem('username');
-        setInterval(async()=>{
+        const name=localStorage.getItem('username')
   try{
-    const result=await axios.get("http://localhost:3000/getchat",{headers:{"Authorization":token}})
-            console.log(name)
+    const result=await axios.get("http://localhost:3000/message/getchat",{headers:{"Authorization":token}})
             for(var i=0;i<result.data.allData.length;i++){
-    
+      
                 showmessageOnScreen(result.data.allData[i]);
             }  
 
@@ -41,5 +42,4 @@ window.addEventListener("DOMContentLoaded",async()=>{
 catch(err){
 console.log(err)
 }
-})
 })

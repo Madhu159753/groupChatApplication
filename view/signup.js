@@ -10,7 +10,7 @@ async function signup(event){
     try{
       const result=await axios.post("http://localhost:3000/signup-data",signupObject)
       if(result.status===201){  
-        window.alert('Successfuly signed up');
+        window.alert(result.data.message)
         window.location.href="login.html"
       }  
       else {

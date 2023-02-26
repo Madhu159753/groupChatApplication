@@ -3,15 +3,15 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const dotenv=require('dotenv');
 dotenv.config();
-function encryeptUserID(id){
-    return jwt.sign({signupId:id},process.env.JAVASCRIPT_ACCESSKEY_TOKEN);
+function encryeptUserID(id,name){
+    return jwt.sign({signupId:id,name:name},process.env.JAVASCRIPT_ACCESSKEY_TOKEN);
 }
 
 exports.loginData=async(req,res,next)=>{
     const email=req.body.email;
     const password=req.body.password;
     try{
- if(!email||!password)
+ if(!email||!password )
  {
      return res.status(400).json({err:'bad parameer, something is missing'})
  }
@@ -22,7 +22,7 @@ exports.loginData=async(req,res,next)=>{
              throw new Error('something went wrong')
          }
          if(result===true){
-         res.status(200).json({success:true,message:"user loged in successfuly",token:encryeptUserID(data[0].id)})
+         res.status(200).json({success:true,message:"user loged in successfuly",token:encryeptUserID(data[0].id),name:data[0].name})
          }
      else{
       return res.status(400).json({success:false,message:"password is incorrect"})
