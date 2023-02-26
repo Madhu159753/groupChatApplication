@@ -3,8 +3,8 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const dotenv=require('dotenv');
 dotenv.config();
-function encryeptUserID(id,name){
-    return jwt.sign({signupId:id,name:name},process.env.JAVASCRIPT_ACCESSKEY_TOKEN);
+function encryeptUserID(id){
+    return jwt.sign({signupId:id},process.env.JAVASCRIPT_ACCESSKEY_TOKEN);
 }
 
 exports.loginData=async(req,res,next)=>{

@@ -9,6 +9,7 @@ async function login(event){
     try{
         const result=await axios.post("http://localhost:3000/login",loginData)
         localStorage.setItem('token',result.data.token)
+        localStorage.setItem('name',result.data.name)
        // console.log(result.data.name)
        // localStorage.setItem('username',result.data.name)
         
