@@ -19,12 +19,13 @@ exports.getChatData=async(req,res,next)=>{
     let msgId=req.query.msg;
     try{
     const data=await chat.findAll()
-    console.log(data.length);
+    //console.log(data.length);
     let index=data.findIndex(chat=>chat.id==msgId)
+    //console.log("index",index)
     let messagetosend=data.slice(index+1)
-    console.log("message after slicing",messagetosend);
+    //console.log("message after slicing",messagetosend);
     let username=await req.user.name;
-    console.log("username",username.split(' ')[0])
+    //console.log("username",username.split(' ')[0])
      res.status(201).json({messagetosend,username})
     }
     catch(err){

@@ -8,11 +8,11 @@ async function chatData(event){
     const token=localStorage.getItem('token');
     try{
   
-      const result=await axios.post("http://localhost:3000/message/chat",data,{headers:{"Authorization":token}})
+      const result=await axios.post("http://localhost:3000/message/chat",data,{headers:{Authorization:token}})
         //showmessageOnScreen(result.data.message)
        // event.target.message.value='';
         let name=localStorage.getItem('name');
-        saveToLocal(name,result.data.data)
+        saveToLocal(result.data.data)
     
        window.location.reload()
     
@@ -44,6 +44,7 @@ function showmessageOnScreen(user){
 // console.log(err)
 // }
 // })
+
 window.addEventListener('DOMContentLoaded',async(event)=>{
     event.preventDefault();
     const token=localStorage.getItem('token');
@@ -59,39 +60,49 @@ window.addEventListener('DOMContentLoaded',async(event)=>{
         let response=await axios.get(`http://localhost:3000/message/getchat?msg=${lastId}`, {headers:{"Authorization": token}})
        console.log('getmessage response',response);
        var newArr=response.data.messagetosend;
-       saveToLocal(newArr,response.data.username)
+       saveToLocal(newArr)
     }
     catch(err){
         console.log(err);
     }
 })
 
-function saveToLocal(arr,name){
-    let chatArray=[];
+ function saveToLocal(arr){
+
+    var chatArray=[];
+    
     let oldMessage=JSON.parse(localStorage.getItem('msg'));
     if(oldMessage==undefined || oldMessage.length==0){
         chatArray=chatArray.concat(arr)
     }
+    if(chatArray.length>10){
+        let remove=chatArray.length-10;
+        for(let i=0;i<remove;i++){
+            chatArray.shift();
+        }
+        
+    }
     else{
-        chatArray=[];
+       // chatArray=[];
         chatArray=chatArray.concat(oldMessage,arr);
     }
+   
     localStorage.setItem('msg',JSON.stringify(chatArray))
   
-   showChatOnScreen(name);   
+   showChatOnScreen();   
 }
 
-function showChatOnScreen(name){
-    console.log('inside show on screen',+name)
-    localStorage.setItem('name',name)
+function showChatOnScreen(){
+    //console.log('inside show on screen',name)
+   // localStorage.setItem('name',name)
     let chatArray=localStorage.getItem('msg')
-    console.log("chat on screen arr",chatArray);
+    //console.log("chat on screen arr",chatArray);
     let newChatArray=JSON.parse(chatArray);
 
     const parentNode=document.getElementById('list')
 
     newChatArray.forEach(chat => {
-        let childNode=`<p id=${chat.id}> ${chat.name}:${chat.message}</p>`
+        let childNode=`<p> ${chat.name}:${chat.message}</p>`
         parentNode.innerHTML=parentNode.innerHTML+childNode;
     });
 }
