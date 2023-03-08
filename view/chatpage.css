@@ -16,6 +16,9 @@
   border: 1px solid #a1a1a1;
   font: inherit;
   border-radius: 15px;
+  position: absolute;
+  top: 430px;
+  
 }
 
 .form-control input:focus,
@@ -23,25 +26,29 @@
   outline-color: #00695c;
 }
 .product-form {
-  width: 38rem;
+  width: 33rem;
   line-height: 2;
   max-width: 100%;
   margin: auto;
   display: block;
   position:absolute;
-  bottom:6px;
-  /* right:100px; */
+  margin-left: 660px; 
+  line-height: 2.5;
 
 }
 .btn {
+  line-height: 2.5;
   padding: 0.25rem 1rem;
   text-decoration: none;
   font: inherit;
   border: 1px solid #00695c;
   color: #00695c;
   background: white;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
+  position:absolute;
+  margin-left: 535px;
+  top: 430px;
   
   }
   .btn:hover,
@@ -50,12 +57,21 @@
   color: white;
   }
   .madhu{
-    display:block;
+    display:block; 
+         /* position:absolute; */
+          top: 8px;
+          right: 16px;
+           font-size: 18px;
             border: 1px solid #c5baba;
             padding:5px; 
-            margin-top:5px;
+            margin-left: 650px;
             width:600px;
             height:540px;
             overflow:scroll;
 
   }
+
+  /* .groupname{
+    margin-right: auto;
+    margin-top:2px;
+  } */

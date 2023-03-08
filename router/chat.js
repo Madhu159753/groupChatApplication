@@ -1,5 +1,5 @@
-const express=require('express');
-const router=express.Router();
+ const express=require('express');
+ const router=express.Router();
 const chatController=require('../controller/chat');
 const chatMiddleware=require('../middlewear/jwtToken')
 

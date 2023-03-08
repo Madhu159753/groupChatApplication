@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded',async(event)=>{
         
     }
     else{
-       // chatArray=[];
+       chatArray=[];
         chatArray=chatArray.concat(oldMessage,arr);
     }
    
@@ -106,3 +106,43 @@ function showChatOnScreen(){
         parentNode.innerHTML=parentNode.innerHTML+childNode;
     });
 }
+
+
+async function groupname(event){
+    event.preventDefault();
+   
+    const obj={
+        groupname:event.target.name.value
+    };
+    console.log ('new created group',obj);
+    try{ 
+    token=localStorage.getItem('token');  
+    const data=await axios.post('http://localhost:3000/creategroup',obj, {headers:{Authorization:token}})
+    
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+window.addEventListener("DOMContentLoaded",async()=>{
+    const token=localStorage.getItem('token');
+    try{
+  const result=await axios.get("http:/localhost:3000/getgroup",{headers:{Authorization:token}})
+    const usergroups=result.data.usergps;
+    document.getElementById("groups").innerHTML="";
+    const groupcontainer=document.getElementById("groups")
+
+    for(let i=0;i<usergroups.length;i++){
+        const groupdiv=document.createElement("button");
+        groupdiv.innerHTML=`<p>${usergroups[i].groupname}<p>`
+        groupdiv.classList.add("groupdiv");
+        groupdiv.setAttribute("id",`${usergroups[i].id}`);
+        groupcontainer.appendChild(groupdiv);
+    }
+}
+    catch(err){
+        console.log(err);
+    }
+})
+
