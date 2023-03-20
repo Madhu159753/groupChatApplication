@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>create group</title>
+    <link href="chatpage.css" rel="stylesheet">
 </head>
 <body>
     <div class="groupname" id="creategroup">
@@ -42,9 +43,19 @@
       <div id="groups"></div>
     
       <div class="msgs" id="msgs">
-        <h1>Messages:</h1>
+        
       </div>
     </div>
+    <div id="List" class="madhu"></div>
+    <form class="product-form"  method="POST" onsubmit="groupData(event)">
+     <div class="form-control">
+       <label for="message"></label>
+     <input id="message" type="message" name="message">
+    
+    </div>
+     <button class="btn" type="submit" >Send</button> 
+   
+</form>
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="group.js"></script>

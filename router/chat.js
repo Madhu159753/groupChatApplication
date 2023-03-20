@@ -5,5 +5,5 @@ const chatMiddleware=require('../middlewear/jwtToken')
 
 router.post('/chat',chatMiddleware.decryptuUserId,chatController.postchatData)
 router.get('/getchat',chatMiddleware.decryptuUserId,chatController.getChatData)
-
+router.get('/getuser',chatController.getUser);
 module.exports=router;

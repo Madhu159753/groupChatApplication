@@ -7,7 +7,11 @@ const usergroup=sequelize.define('usergroup',{
       allowNull:false,
       primaryKey:true,
       unique:true 
-    }
+    },
+    is_admin:{
+      type:Sequelize.BOOLEAN,
+      allowNull:false
+    },
     
 });
 module.exports=usergroup;

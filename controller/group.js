@@ -3,7 +3,7 @@ const group = require('../model/group');
 const User=require('../model/signup');
 //const Op=require('sequelize');
 const usergroup=require('../model/usergroupconnect');
-
+const chat=require('../model/chat');
 
 exports.creatGroup=async(req,res,next)=>{
     const {groupname}=req.body;
@@ -94,4 +94,28 @@ exports.removeUserFromGroup=async(req,res,next)=>{
    res.json({err:err})
   }
   
+}
+exports.groupChat=async(req,res,next)=>{
+   const message=req.body.message;
+   const signupId=req.user.id;
+   const groupId=req.params.groupId;
+   try{
+   const data=await chat.create({message,name:req.user.name,signupId,groupId})
+        res.json({data,message:'success'})
+   }
+ catch(err){
+
+ }
+}
+exports.getGroupMessage=async(req,res,next)=>{
+   const groupId=req.params.groupId;
+   try{
+  const data=await chat.findAll({where:{groupId}})
+  console.log("234",data)
+       res.json({data:data,message:'success'})
+   }
+   catch(err){
+      console.log(err)
+      res.json({err:err})
+   }
 }

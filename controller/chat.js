@@ -5,7 +5,7 @@ exports.postchatData=async(req,res,nexts)=>{
     try{
 const message=req.body.message;
 const name=req.user.name;
-const createdAt=req.user.createdAt;
+//const createdAt=req.user.createdAt;
 console.log(name);
 
 const data=await chat.create({message,name,createdAt,signupId:req.user.id})
@@ -35,13 +35,14 @@ exports.getChatData=async(req,res,next)=>{
     }
 }
 
-exports.groupchat=async(req,res,next)=>{
+exports.getUser=async(req,res,next)=>{
     try{
-    const user=await User.findAll({where:{id:req.user.id}}) 
+    const user=await User.findAll() 
       res.json({user:user})
 
     }
     catch(err){
+        console.log(err)
        res.json({err:err})
     }
 
