@@ -11,7 +11,7 @@ async function login(event){
         localStorage.setItem('token',result.data.token)
         localStorage.setItem('name',result.data.name)
        // console.log(result.data.name)
-       // localStorage.setItem('username',result.data.name)
+       //localStorage.setItem('username',result.data.name)
         
         if(result.status===200){
             window.alert(result.data.message);

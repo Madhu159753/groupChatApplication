@@ -1,4 +1,5 @@
 const chat=require('../model/chat');
+const User=require('../model/signup');
 
 exports.postchatData=async(req,res,nexts)=>{
     try{
@@ -34,3 +35,14 @@ exports.getChatData=async(req,res,next)=>{
     }
 }
 
+exports.groupchat=async(req,res,next)=>{
+    try{
+    const user=await User.findAll({where:{id:req.user.id}}) 
+      res.json({user:user})
+
+    }
+    catch(err){
+       res.json({err:err})
+    }
+
+}

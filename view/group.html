@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create group</title>
+</head>
+<body>
+    <div class="groupname" id="creategroup">
+        <h3>create group</h3>
+        <form  method="POST" onsubmit="groupname(event)">
+          <label for="groupname">Group Name:</label>
+          <input type="text" name="name" id="gpname" /> <br />
+          <button type="submit" id="cgp">Create Group</button>
+          
+        </form>
+           <h3>Add user in group</h3>
+          <label for="adduser">enter user emailId:</label>
+          <input type="text" name="adduser" id="adduser" /> <br />
+          <label for="makeadmin">Give Admin Access</label>
+          <input type="radio" name="makeadmin" id="makeadmin" value="on"/>
+          <label for="makeadmin">Add Normal user</label>
+          <input type="radio" name="makeadmin" id="makeadmin" value="off"/> <br>
+          <label for="groupid">enter groupid</label>
+          <input type="text" id="groupid" />
+          <button type="submit" id="adu">Add User</button>
+        </form>
+       
+        <form>
+          <h3>remove user from group</h3>
+          <label for="rmuser">enter user email</label>
+          <input type="text" name="rmuser" id="rmuser" /> <br />
+          <label for="groupid">enter groupid</label>
+          <input type="text" id="gid" />
+          <button type="submit" id="rmu">Remove User</button>
+        </form> 
+          </div>
+         <div id="list" class="madhu"></div>
+         
+    <div id="msgsgroups">
+      <div id="groups"></div>
+    
+      <div class="msgs" id="msgs">
+        <h1>Messages:</h1>
+      </div>
+    </div>
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="group.js"></script>
+</body>
+</html>
